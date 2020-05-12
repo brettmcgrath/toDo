@@ -4,56 +4,42 @@
     make input text area stickied to bottom of page 
     break out the function in input 
     reset textbox after submission
-
     attempt to change list name in index.html to fix weird adding task issue when 
     expanding to multiple days
     *
 */
+
 var input = document.getElementById("input");
 var list = document.getElementById("list");
 var tasks = document.getElementById("tasks");
 
-function addTask(){
-    var box = document.createElement("input");
-    box.type = "checkbox";
-    box.className = "form-check-input";
-    box.name = "boxName";
-    //create <li>
-    var node = document.createElement("li");
-    //get the value of the input 
-    var text = document.getElementById("tasks").value;
-    //create a text node
-    var textnode = document.createTextNode(text);
-    //combine checkbox onto li
-    node.appendChild(box); 
-    //combine html tag and text
-    node.appendChild(textnode);
-    //put it in the html
-    list.appendChild(node);
-    console.log("submitted");
+function addTask() {
+    if (tasks.value !== '') {
+        var box = document.createElement("input");
+        box.type = "checkbox";
+        box.className = "form-check-input";
+        box.name = "boxName";
+        var node = document.createElement("li"); //create <li>
+        var text = document.getElementById("tasks").value; //get the value of the input 
+        var textnode = document.createTextNode(text); //create a text node
+        node.appendChild(box); //combine checkbox onto li
+        node.appendChild(textnode); //combine html tag and text
+        list.appendChild(node); //put it in the html
+        console.log("submitted");
+        tasks.value = '';
+    } else {
+        alert("You must enter a task before adding it")
+    }
 }
 
 document.getElementById("btn").addEventListener("click", addTask);
 
 input = addEventListener("keyup", function(event){
-    if(event.keyCode === 13){
-        var box = document.createElement("input");
-            box.type = "checkbox";
-            box.className = "form-check-input";
-            box.name = "boxName";
-
-        //create <li>
-        var node = document.createElement("li");
-        //get the value of the input 
-        var text = document.getElementById("tasks").value;
-        //create a text node
-        var textnode = document.createTextNode(text);
-        //combine checkbox onto li
-        node.appendChild(box); 
-        //combine html tag and text
-        node.appendChild(textnode);
-        //put it in the html
-        list.appendChild(node);
-        console.log("submitted");
+    if (tasks.value !== '') {
+        if (event.keyCode === 13) {
+            addTask()
+        }
+    } else {
+        alert("You must enter a task before adding it")
     }
 });
