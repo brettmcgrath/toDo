@@ -2,8 +2,6 @@
     be able to click on text to check checkbox
     make checkbox fixed based off of left side of card 
     make input text area stickied to bottom of page 
-    break out the function in input 
-    reset textbox after submission
     attempt to change list name in index.html to fix weird adding task issue when 
     expanding to multiple days
     *
